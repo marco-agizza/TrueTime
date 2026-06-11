@@ -53,12 +53,17 @@ let package = Package(
                 .define("SPM")
             ]
         ),
+        .target(
+            name: "Bridging",
+            dependencies: ["CTrueTime", "TrueTime"],
+            path: "Sources/Bridging"
+        ),
         // MARK: - TrueTimeTests
         // Test target for unit and integration tests.
         .testTarget(
             name: "TrueTimeTests",
-            dependencies: ["TrueTime"],
-            path: "Tests",
+            dependencies: ["CTrueTime", "TrueTime", "Bridging"],
+            path: "Tests/TrueTimeTests",
             sources: [
                 "ArbitraryExtensions.swift",
                 "NTPExtensionsSpec.swift",
